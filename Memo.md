@@ -22,6 +22,10 @@
 | cycle    | return the infinite cycled list of items                    |
 | repeat   | return the infinite list of the repeated number             |
 | replicate | return the list consisting of single numbers |
+| fst | return the first element of the tuple |
+| snd | return the second element of the tuple |
+| zip | return the pair of value from the two lists |
+
 
 
 # 記法について
@@ -61,3 +65,13 @@
     - `[出力パート | 束縛, 述語, 述語, ...]`
     - 述語でフィルターができる
     - `[x+y | x <- [1..3], y <- [10, 100, 1000], x+y > 100, x+y < 1003]`
+- タプル
+  - 違う方の要素が格納できる
+  - サイズが固定
+  - `(1,2)`と`(1,2,3)`は違う型として扱われる
+    - 要素の数とそれぞれの要素の型が一致していると同じ型
+- 型
+  - 型の確認: `:t 'a'`
+  - 関数を書くときには型を指定するといい
+    - `removeNonUppercase :: [Char] -> [Char]`
+    - ``removeNonUppercase st = [c | c <- st, c `elem` ['A'..'Z']]``
