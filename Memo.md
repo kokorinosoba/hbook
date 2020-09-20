@@ -32,6 +32,7 @@
 | minBound     | return the minimum value of its type                        |
 | maxBound     | return the maximum value of its type                        |
 | fromIntegral | return the Integer value                                    |
+| error        | raise an error                                              |
 
 
 # 記法について
@@ -129,3 +130,11 @@
     - Integral
       - Int, Integerを含む
       - fromIntegral
+- 関数の構文
+  - パターンマッチ
+    - 上から順番に調べ，対応する関数が実行される
+    - 再帰関数を書く際にも使える
+  - リストのパターンマッチ
+    - `let xs = [(1,3),(4,3),(2,4),(5,3),(5,6),(3,1)]`
+    - `[x*100+3 | (x, 3) <- xs]`
+    -
