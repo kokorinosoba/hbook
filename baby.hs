@@ -43,8 +43,8 @@ second (_, y, _) = y
 third :: (a, b, c) -> c
 third (_, _, z) = z
 head' :: [a] -> a
-head' [] = error "Can't call head on an empty list, dummy!"
-head' (x:_) = x
+-- head' [] = error "Can't call head on an empty list, dummy!"
+-- head' (x:_) = x
 tell :: (Show a) => [a] -> String
 tell [] = "The list is empty"
 tell (x:[]) = "The list has one element: " ++ show x
@@ -96,3 +96,10 @@ cylinder r h =
       topArea = pi * r * 2
   in  sideArea + 2 * topArea
 calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
+head' xs = case xs of [] -> error "No head for empty lists!"
+                      (x:_) -> x
+describeList :: [a] -> String
+describeList ls = "The list is "
+                  ++ case ls of [] -> "empty."
+                                [x] -> "a singleton list."
+                                xs -> "a longer list."
