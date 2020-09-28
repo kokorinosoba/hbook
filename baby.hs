@@ -182,10 +182,14 @@ elem' a (x : xs)
 
 quicksort :: (Ord a) => [a] -> [a]
 quicksort [] = []
-quicksort (x : xs) = quicksort smallerOrEqual ++ [x] ++ quicksort larger
-  where
-    smallerOrEqual = [a | a <- xs, a <= x]
-    larger = [a | a <- xs, a > x]
+-- quicksort (x : xs) = quicksort smallerOrEqual ++ [x] ++ quicksort larger
+--   where
+--     smallerOrEqual = [a | a <- xs, a <= x]
+--     larger = [a | a <- xs, a > x]
+quicksort (x : xs) =
+  let smallerOrEqual = filter (<= x) xs
+      larger = filter (> x) xs
+   in quicksort smallerOrEqual ++ [x] ++ quicksort larger
 
 compareWithHundred :: Int -> Ordering
 compareWithHundred = compare 100
@@ -212,3 +216,25 @@ flip' :: (a -> b -> c) -> (b -> a -> c)
 --   where
 --     g x y = f y x
 flip' f x y = f y x
+
+largestDivisible :: Integer
+largestDivisible = head (filter p [100000, 99999 ..])
+  where
+    p x = x `mod` 3829 == 0
+
+oddSquareSum :: Integer
+oddSquareSum = sum oddSquares
+  where
+    oddSquares = takeWhile (< 10000) (filter odd squares)
+    squares = map (^ 2) [1 ..]
+
+chain :: Integer -> [Integer]
+chain 1 = [1]
+chain x
+  | even x = x : chain (x `div` 2)
+  | odd x = x : chain (x * 3 + 1)
+
+numLongChains :: Int
+numLongChains = length (filter isLong (map chain [1 .. 100]))
+  where
+    isLong xs = length xs >= 15

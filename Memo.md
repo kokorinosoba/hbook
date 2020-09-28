@@ -33,7 +33,13 @@
 | maxBound     | return the maximum value of its type                        |
 | fromIntegral | return the Integer value                                    |
 | error        | raise an error                                              |
-
+| map          | apply a function to all elements of the list                |
+| filter       | filter the list with a condition expression                 |
+| even         | return True if the element is even                          |
+| odd          | return True if the element is odd                           |
+| not          | return the negated boolean value                            |
+| null         | return True if the list is null                             |
+| takeWhile    | return the elements until the condition is met as a list    |
 
 # 記法について
 - ファイルの読み込み: `:l filename.hs`
@@ -193,3 +199,8 @@
 - 高階関数
   - 関数を引数として受け取って処理する
   - 1引数の関数を渡す必要があるときは，部分適用によって1引数の関数を作って渡せば良い
+  - map関数
+    - リストの全てに適用して新しいリストを返す
+  - filter関数
+    - 述語とリストを受け取り，述語を満たす要素のリストを返す
+    - 述語: 真偽値を返すもの
