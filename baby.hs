@@ -175,10 +175,14 @@ zip' [] _ = []
 zip' (x : xs) (y : ys) = (x, y) : zip' xs ys
 
 elem' :: (Eq a) => a -> [a] -> Bool
-elem' a [] = False
-elem' a (x : xs)
-  | a == x = True
-  | otherwise = a `elem'` xs
+-- elem' a [] = False
+-- elem' a (x : xs)
+--   | a == x = True
+--   | otherwise = a `elem'` xs
+-- elem' y ys = foldr (\x acc -> if x == y then True else acc) False ys
+elem' y ys = foldr f False ys
+  where
+    f x acc = if x == y then True else acc
 
 quicksort :: (Ord a) => [a] -> [a]
 quicksort [] = []
@@ -215,7 +219,8 @@ flip' :: (a -> b -> c) -> (b -> a -> c)
 -- flip' f = g
 --   where
 --     g x y = f y x
-flip' f x y = f y x
+-- flip' f x y = f y x
+flip' f = \x y -> f y x
 
 largestDivisible :: Integer
 largestDivisible = head (filter p [100000, 99999 ..])
@@ -235,6 +240,21 @@ chain x
   | odd x = x : chain (x * 3 + 1)
 
 numLongChains :: Int
-numLongChains = length (filter isLong (map chain [1 .. 100]))
-  where
-    isLong xs = length xs >= 15
+-- numLongChains = length (filter isLong (map chain [1 .. 100]))
+--   where
+--     isLong xs = length xs >= 15
+numLongChains = length (filter (\xs -> length xs >= 15) (map chain [1 .. 100]))
+
+sum' :: (Num a) => [a] -> a
+-- sum' xs = foldl (\acc x -> acc + x) 0 xs
+sum' = foldl (+) 0
+
+prod :: (Num a) => [a] -> a
+-- prod xs = foldl (\acc x -> acc * x) 1 xs
+prod = foldl (*) 1
+
+sentencing :: [[Char]] -> [Char]
+sentencing (x : xs) = foldl (\acc str -> acc ++ " " ++ str) x xs
+
+map' :: (a -> b) -> [a] -> [b]
+map' f xs = foldr (\x acc -> f x : acc) [] xs
