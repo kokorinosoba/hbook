@@ -40,6 +40,9 @@
 | not          | return the negated boolean value                            |
 | null         | return True if the list is null                             |
 | takeWhile    | return the elements until the condition is met as a list    |
+| words        | convert the string to a list of words split by space        |
+| group        | group adjacent elements together                            |
+| sort         | sort the list elements                                      |
 
 # 記法について
 - ファイルの読み込み: `:l filename.hs`
@@ -228,3 +231,15 @@
   - ポイントフリースタイル
     - 関数定義の一時変数$f(x)$の$x$を使わずに関数を定義するスタイルのこと
     - `fn x = ceiling (negate (tan (cos (max 50 x))))`は`fn = ceiling . negate . tan . cos . max 50`として表せる
+- モジュール
+  - インポート
+    - `import ModuleName`
+    - `:m + Data.List Data.Map Data.Set`: GHCiでのロード
+    - `import Data.List (nub, sort)`: 関数を選択してのインポート
+    - `import Data.List hiding (nub)`: 特定の関数を読み込まない
+    - `import qualified Data.Map`: 修飾付きインポート(関数の参照はフルネームで行う)
+    - `import qualified Data.Map as M`: エイリアスをつけてのインポート
+    - 合成関数とモジュール関数の`.`の違いは空白が空いているかどうか
+    - モジュール名は大文字で始まり、関数名は小文字で始まる
+- 正格な左畳み込み
+  - 遅延評価しない左畳み込み: `Data.List.fold'`
