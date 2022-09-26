@@ -284,3 +284,23 @@ encode offset msg = map (chr . (+ offset) . ord) msg
 
 decode :: Int -> String -> String
 decode shift msg = encode (negate shift) msg
+
+digitSum :: Int -> Int
+digitSum = sum . map digitToInt . show
+
+firstTo40 :: Maybe Int
+firstTo40 = find  (\x -> digitSum x == 40) [1..]
+
+firstTo :: Int -> Maybe Int
+firstTo n = find (\x -> digitSum x == n) [1..]
+
+-- findKey :: (Eq k) => k -> [(k, v)] -> v
+-- findKey key xs = snd . head . filter (\(k, v) -> key == k) $ xs
+
+findKey :: (Eq k) => k -> [(k, v)] -> Maybe v
+-- findKey key [] = Nothing
+-- findKey key ((k, v) : xs)
+--   | key == k = Just v
+--   | otherwise = findKey key xs
+-- implementation by folding
+findKey key xs = foldr (\(k, v) acc -> if key == k then Just v else acc) Nothing xs
