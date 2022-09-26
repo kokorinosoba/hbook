@@ -40,9 +40,18 @@
 | not          | return the negated boolean value                            |
 | null         | return True if the list is null                             |
 | takeWhile    | return the elements until the condition is met as a list    |
+| negate       | invert the sign of a number                                 |
+| nub          | remove duplicate elements of a list                         |
 | words        | convert the string to a list of words split by space        |
 | group        | group adjacent elements together                            |
 | sort         | sort the list elements                                      |
+| tails        | apply tail function to a list repeatedly                    |
+| isPrefixOf   | return True if the 2nd list begins with the 1st list        |
+| any          | return True if a list has True                              |
+| isInfixOf    | return True if a list included by another list              |
+| ord          | return the ordinal value of a letter                        |
+| chr          | return a letter corresponding to the number                 |
+| find         | find the first value in a list that matches the condition   |
 
 # 記法について
 - ファイルの読み込み: `:l filename.hs`
@@ -243,3 +252,9 @@
     - モジュール名は大文字で始まり、関数名は小文字で始まる
 - 正格な左畳み込み
   - 遅延評価しない左畳み込み: `Data.List.fold'`
+- Maybe
+  - 0個か1個の要素だけを持てる型
+  - 何も値がないときは`Nothing`となる
+  - 値がある場合は`Just`が付いた形
+- 連想リスト(辞書)
+  - リストに対する標準的な再帰パターンでは畳み込みを使ったほうがよい
